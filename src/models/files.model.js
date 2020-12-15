@@ -1,24 +1,19 @@
-// gifts-model.js - A mongoose model
+// files-model.js - A mongoose model
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 module.exports = function (app) {
-  const modelName = 'gifts';
+  const modelName = 'files';
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const schema = new Schema({
-    title: { type: String },
-    url: { type: String, maxlength: 500 },
-    description: { type: String, maxlength: 150 },
-    photo: {
-      type: mongooseClient.Schema.Types.ObjectId,
-      ref: 'files',
-    },
+    name: { type: String, unique: true },
+    contentType: { type: String },
     user: {
       type: mongooseClient.Schema.Types.ObjectId,
-      ref: 'user',
-      required: true,
-    },
+      ref: 'users',
+      required: true
+    }
   }, {
     timestamps: true
   });

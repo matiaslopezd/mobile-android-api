@@ -10,18 +10,19 @@ module.exports = function (app) {
     date: { type: Date },
     contact: {
       type: mongooseClient.Schema.Types.ObjectId,
-      ref: "contacts",
+      ref: 'contacts',
       unique: true,
     },
     gifts: [
       {
         type: mongooseClient.Schema.Types.ObjectId,
-        ref: "gifts"
+        ref: 'gifts'
       }
     ],
     user: {
       type: mongooseClient.Schema.Types.ObjectId,
-      ref: "users"
+      ref: 'users',
+      required: true
     }
   }, {
     timestamps: true

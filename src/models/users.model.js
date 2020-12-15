@@ -9,7 +9,10 @@ module.exports = function (app) {
     name: { type: String, maxlength: 50, minlength: 2 },
     email: { type: String, unique: true, lowercase: true },
     password: { type: String },
-    photo: { type: String },
+    photo: {
+      type: mongooseClient.Schema.Types.ObjectId,
+      ref: 'files',
+    },
   }, {
     timestamps: true
   });

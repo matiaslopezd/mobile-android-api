@@ -10,10 +10,14 @@ module.exports = function (app) {
     name: { type: String, required: true },
     email: { type: String },
     phone: { type: String },
-    photo: { type: String },
+    photo: {
+      type: mongooseClient.Schema.Types.ObjectId,
+      ref: 'files',
+    },
     user: {
       type: mongooseClient.Schema.Types.ObjectId,
-      ref: "users"
+      ref: 'users',
+      required: true
     }
   }, {
     timestamps: true

@@ -3,9 +3,9 @@ const app = require('../src/app');
 
 describe('authentication', () => {
   it('registered the authentication service', () => {
-    assert.ok(app.service('authentication'));
+    assert.ok(app.service('/auth/login'));
   });
-  
+
   describe('local strategy', () => {
     const userInfo = {
       email: 'someone@example.com',
@@ -21,11 +21,11 @@ describe('authentication', () => {
     });
 
     it('authenticates user and creates accessToken', async () => {
-      const { user, accessToken } = await app.service('authentication').create({
+      const { user, accessToken } = await app.service('/auth/login').create({
         strategy: 'local',
         ...userInfo
       });
-      
+
       assert.ok(accessToken, 'Created access token for user');
       assert.ok(user, 'Includes user in authentication data');
     });
