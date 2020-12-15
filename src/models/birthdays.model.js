@@ -1,15 +1,28 @@
-// users-model.js - A mongoose model
+// birthdays-model.js - A mongoose model
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 module.exports = function (app) {
-  const modelName = 'users';
+  const modelName = 'birthdays';
   const mongooseClient = app.get('mongooseClient');
-  const schema = new mongooseClient.Schema({
-    name: { type: String, maxlength: 50, minlength: 2 },
-    email: { type: String, unique: true, lowercase: true },
-    password: { type: String },
-    photo: { type: String },
+  const { Schema } = mongooseClient;
+  const schema = new Schema({
+    date: { type: Date },
+    contact: {
+      type: mongooseClient.Schema.Types.ObjectId,
+      ref: "contacts",
+      unique: true,
+    },
+    gifts: [
+      {
+        type: mongooseClient.Schema.Types.ObjectId,
+        ref: "gifts"
+      }
+    ],
+    user: {
+      type: mongooseClient.Schema.Types.ObjectId,
+      ref: "users"
+    }
   }, {
     timestamps: true
   });
