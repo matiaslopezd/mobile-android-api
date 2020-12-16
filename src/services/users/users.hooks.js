@@ -1,5 +1,4 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
-const uploadFile = require('../../hooks/upload-file');
 
 const {
   hashPassword, protect
@@ -10,9 +9,9 @@ module.exports = {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ authenticate('jwt') ],
-    create: [ hashPassword('password'), uploadFile() ],
+    create: [ hashPassword('password') ],
     update: [],
-    patch: [ hashPassword('password'),  authenticate('jwt'), uploadFile() ],
+    patch: [ hashPassword('password'),  authenticate('jwt') ],
     remove: [ authenticate('jwt') ]
   },
 
